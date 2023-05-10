@@ -1,0 +1,45 @@
+*{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+.navbar{
+  padding: 4px;
+}
+
+.home{
+  font-weight: 700;
+  text-decoration: none;
+  color: #f5f5f5;
+  padding: 8px;
+  transition: 200ms ease-out;
+}
+
+.home:hover{
+  color:#a5a5a5;
+}
+
+td{
+  vertical-align: middle;
+}
+
+.content{
+  color: #252525;
+  font-weight: 700;
+  transition: 200ms ease-out;
+}
+
+.content:hover{
+  color: #e40613;
+}
+
+.submit{
+  margin: 12px 0px;
+}
+
+.in-table{
+  margin: 0px 4px;
+}
