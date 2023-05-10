@@ -77,6 +77,7 @@
                         <th class="fw-bold">Baru</th>
                         <th class="fw-bold">Lama</th>
                         <th class="fw-bold">Rusak</th>
+                        <th class="fw-bold">Keluar</th>
                 </thead>
 
                 <?php
@@ -90,11 +91,12 @@
 
                     <tbody>
                         <tr>
-                            <td class="text-capitalize fw-medium"><?php echo $data["table"]; ?></td>
+                            <td class="text-capitalize fw-medium"><a class="content" href="show.php?table=<?php echo htmlspecialchars($data["table"]); ?>&sort=no_aset"><span class="text-capitalize fw-semibold"><?php echo htmlspecialchars($data[0]); ?></span></a></td>
                             <td class="fw-medium"><?php echo $data["row_count"]; ?></td>
                             <td class="fw-medium"><?php echo $data["baru"]; ?></td>
                             <td class="fw-medium"><?php echo $data["lama"]; ?></td>
                             <td class="fw-medium"><?php echo $data["rusak"]; ?></td>
+                            <td class="fw-medium"><?php echo $data["keluar"]; ?></td>
                         </tr>
                     </tbody>
                 <?php
