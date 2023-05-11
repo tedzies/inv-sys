@@ -18,17 +18,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $status = strtoupper(input($_POST['status']));
 
   if ($keluar == "1970-01-01") {
-    $keluar = null;
+    $sql = "update $table set
+    no_aset='$noaset',
+    merek='$merek',
+    ser_num='$sernum',
+    status='$status',
+    tgl_masuk='$masuk',
+    tgl_keluar= null
+    where id= $id";
+  } else {
+    $sql = "update $table set
+    no_aset='$noaset',
+    merek='$merek',
+    ser_num='$sernum',
+    status='$status',
+    tgl_masuk='$masuk',
+    tgl_keluar='$keluar'
+    where id= $id";
   }
-
-  $sql = "update $table set
-  no_aset='$noaset',
-  merek='$merek',
-  ser_num='$sernum',
-  status='$status',
-  tgl_masuk='$masuk',
-  tgl_keluar='$keluar'
-  where id= $id";
 
   $hasil = mysqli_query($conn, $sql);
 

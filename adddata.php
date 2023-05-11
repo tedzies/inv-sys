@@ -19,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $table = htmlspecialchars($_POST["table"]);
 
     if ($keluar == "1970-01-01") {
-        $keluar = null;
+        $sql = "insert into $table (no_aset,merek,ser_num,status,tgl_masuk,tgl_keluar)
+                values('$noaset','$merek','$sernum','$status','$masuk', null)";
+    } else {
+        $sql = "insert into $table (no_aset,merek,ser_num,status,tgl_masuk,tgl_keluar)
+                values('$noaset','$merek','$sernum','$status','$masuk','$keluar')";
     }
-
-    $sql = "insert into $table (no_aset,merek,ser_num,status,tgl_masuk,tgl_keluar)
-    values
-    ('$noaset','$merek','$sernum','$status','$masuk','$keluar')";
 
     $hasil = mysqli_query($conn, $sql);
 

@@ -55,7 +55,7 @@
       $sql = "delete from $table where id='$id' ";
       $hasil = mysqli_query($conn, $sql);
       if ($hasil) {
-        header("Location:show.php?table=$table");
+        header("Location:show.php?table=$table&sort=no_aset");
       } else {
         echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
       }
