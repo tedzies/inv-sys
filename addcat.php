@@ -24,10 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hasil=mysqli_query($conn,$sql);
 
     if ($hasil) {
-        header("Location:index.php");
+        header("Location:dashboard.php");
     }
     else {
         echo "<div class='alert alert-danger'> Data Gagal disimpan.</div>";
     }
 }
-?>

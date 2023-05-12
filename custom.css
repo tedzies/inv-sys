@@ -2,6 +2,10 @@
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+body{
+  height: 100vh;
+}
+
 a{
   text-decoration: none;
 }
@@ -42,3 +46,11 @@ td{
 .in-table{
   margin: 0px 4px;
 }
+
+.cta{
+  color: #e40613;
+  background-color: #fff;
+  border-color: #e40613;
+  font-weight: 600;
+}
+

@@ -31,7 +31,7 @@
     <!-- Delete Table -->
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1"><a class="home" href="index.php">HARDWARE INVENTORY</a></span>
+        <span class="navbar-brand mb-0 h1"><a class="home" href="dashboard.php">HARDWARE INVENTORY</a></span>
         <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav align-items-center" id="navbarSupportedContent">
                 <a class="nav-link active" aria-current="page" href="index.php">DASHBOARD</a>

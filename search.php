@@ -12,7 +12,7 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><a class="home" href="index.php">HARDWARE INVENTORY</a></span>
+    <span class="navbar-brand mb-0 h1"><a class="home" href="dashboard.php">HARDWARE INVENTORY</a></span>
     <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav align-items-center" id="navbarSupportedContent">
         <a class="nav-link" aria-current="page" href="index.php">DASHBOARD</a>
@@ -68,7 +68,7 @@
     </h4>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page"><a href="show.php?table=<?php echo $table ?>&sort=no_aset"> <?php echo $table; ?></a></li>
       </ol>
     </nav>
