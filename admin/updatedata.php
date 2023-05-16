@@ -1,5 +1,5 @@
 <?php
-include "connect.php";
+include "../connect.php";
 function input($data)
 {
   $data = trim($data);
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $hasil = mysqli_query($conn, $sql);
 
   if ($hasil) {
-    header("Location:show.php?table=$table&sort=no_aset");
+    header("Location:./show.php?table=$table&sort=no_aset");
   } else {
     echo "<div class='alert alert-danger'> Data Gagal disimpan.</div>";
   }

@@ -3,7 +3,7 @@
 
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="../custom.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,10 +12,10 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><a class="home" href="dashboard.php">HARDWARE INVENTORY</a></span>
+    <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>
     <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav align-items-center" id="navbarSupportedContent">
-        <a class="nav-link" aria-current="page" href="index.php">DASHBOARD</a>
+        <a class="nav-link" aria-current="page" href="./dashboard.php">DASHBOARD</a>
         <!-- Dropdown -->
         <div class="dropdown">
           <a class="dropdown-toggle fw-normal nav-link active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,14 +24,14 @@
 
           <ul class="dropdown-menu p-1">
             <?php
-            include "connect.php";
+            include "../connect.php";
             $sql = "show tables";
             $hasil = mysqli_query($conn, $sql);
             $no = 0;
             while ($data = mysqli_fetch_array($hasil)) {
               $no++;
             ?>
-              <li class="m-2"><a class="content" href="show.php?table=<?php echo htmlspecialchars($data[0]); ?>&sort=no_aset"><span class="text-uppercase fw-bold"><?php echo htmlspecialchars($data[0]); ?></span></a></li>
+              <li class="m-2"><a class="content" href="./show.php?table=<?php echo htmlspecialchars($data[0]); ?>&sort=no_aset"><span class="text-uppercase fw-bold"><?php echo htmlspecialchars($data[0]); ?></span></a></li>
             <?php
             }
             ?>
@@ -44,7 +44,7 @@
   </nav>
   <!-- Delete Data -->
   <?php
-  include "connect.php";
+  include "../connect.php";
   if (isset($_GET['table'])) {
     $table = htmlspecialchars($_GET["table"]);
     if (isset($_GET['sort'])) {
@@ -55,7 +55,7 @@
       $sql = "delete from $table where id='$id' ";
       $hasil = mysqli_query($conn, $sql);
       if ($hasil) {
-        header("Location:show.php?table=$table&sort=no_aset");
+        header("Location:./show.php?table=$table&sort=no_aset");
       } else {
         echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
       }
@@ -71,7 +71,7 @@
     </h4>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="./dashboard.php">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?php echo $table; ?></li>
       </ol>
     </nav>
@@ -85,16 +85,16 @@
             Sort By
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="show.php?table=<?php echo $table ?>&sort=no_aset">No Aset</a></li>
-            <li><a class="dropdown-item" href="show.php?table=<?php echo $table ?>&sort=merek">Merek</a></li>
-            <li><a class="dropdown-item" href="show.php?table=<?php echo $table ?>&sort=status">Status</a></li>
-            <li><a class="dropdown-item" href="show.php?table=<?php echo $table ?>&sort=tgl_masuk">Tanggal Masuk</a></li>
-            <li><a class="dropdown-item" href="show.php?table=<?php echo $table ?>&sort=tgl_keluar">Tanggal Keluar</a></li>
+            <li><a class="dropdown-item" href="./show.php?table=<?php echo $table ?>&sort=no_aset">No Aset</a></li>
+            <li><a class="dropdown-item" href="./show.php?table=<?php echo $table ?>&sort=merek">Merek</a></li>
+            <li><a class="dropdown-item" href="./show.php?table=<?php echo $table ?>&sort=status">Status</a></li>
+            <li><a class="dropdown-item" href="./show.php?table=<?php echo $table ?>&sort=tgl_masuk">Tanggal Masuk</a></li>
+            <li><a class="dropdown-item" href="./show.php?table=<?php echo $table ?>&sort=tgl_keluar">Tanggal Keluar</a></li>
           </ul>
         </div>
       </div>
 
-      <form action="search.php?table=<?php echo $table ?>" method="post">
+      <form action="./search.php?table=<?php echo $table ?>" method="post">
         <div class="input-group">
           <input type="text" name="cari" class="form-control" placeholder="Cari No.Aset" aria-label="search bar" aria-describedby="search-button">
           <input type="hidden" name="table" value=<?php echo $table; ?>>
@@ -142,7 +142,7 @@
           </tr>
 
           <!-- Update Form Modal -->
-          <form action="updatedata.php" method="post">
+          <form action="./updatedata.php" method="post">
             <div class="modal fade" id="updateModal<?php echo $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -241,7 +241,7 @@
       </table>
 
       <!-- Add data Form Modal -->
-      <form action="adddata.php" method="post">
+      <form action="./adddata.php" method="post">
         <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -311,7 +311,7 @@
       </form>
       <!-- Add data Form Modal -->
       <!-- Add Modal -->
-      <form action="addcat.php" method="post">
+      <form action="./addcat.php" method="post">
         <div class="modal fade" id="addCatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -346,7 +346,7 @@
               <p>Delete category <?php echo $table; ?>?</p>
             </div>
             <div class="modal-footer">
-              <a href="index.php?table=<?php echo $table; ?>" class="btn btn-danger" role="button">Delete</a>
+              <a href="./dashboard.php?table=<?php echo $table; ?>" class="btn btn-danger" role="button">Delete</a>
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>

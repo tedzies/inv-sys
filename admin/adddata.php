@@ -1,5 +1,5 @@
 <?php
-include "connect.php";
+include "../connect.php";
 
 function input($data)
 {
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Kondisi apakah berhasil atau tidak dalam mengeksekusi query diatas
     if ($hasil) {
-        header("Location:show.php?table=$table&sort=no_aset");
+        header("Location:./show.php?table=$table&sort=no_aset");
     } else {
         echo "<div class='alert alert-danger'> Data Gagal disimpan.</div>";
     }
