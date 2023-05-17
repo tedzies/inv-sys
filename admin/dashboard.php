@@ -11,6 +11,14 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+
+    if ($_SESSION['level'] == "") {
+        header("location:../index.php");
+    }
+
+    ?>
     <!-- Delete Table -->
     <?php
     include "../connect.php";

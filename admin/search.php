@@ -11,6 +11,14 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+
+  if ($_SESSION['level'] == "") {
+    header("location:../index.php");
+  }
+
+  ?>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>
     <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">

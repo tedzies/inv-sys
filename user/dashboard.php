@@ -11,24 +11,14 @@
 </head>
 
 <body>
-    <!-- Delete Table -->
     <?php
-    include "../connect.php";
-    if (isset($_GET['table'])) {
-        $table = htmlspecialchars($_GET["table"]);
+    session_start();
 
-        $sql = "drop table $table ";
-        $hasil = mysqli_query($conn, $sql);
-
-        //Kondisi apakah berhasil atau tidak
-        if ($hasil) {
-            header("Location:./dashboard.php");
-        } else {
-            echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
-        }
+    if ($_SESSION['level'] == "") {
+        header("location:../index.php");
     }
+
     ?>
-    <!-- Delete Table -->
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>

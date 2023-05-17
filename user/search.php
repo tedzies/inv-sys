@@ -11,6 +11,21 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+
+  if ($_SESSION['level'] == "") {
+    header("location:../index.php");
+  }
+
+  include "../connect.php";
+  if (isset($_GET['table'])) {
+    $table = htmlspecialchars($_GET["table"]);
+    if (isset($_GET['sort'])) {
+      $sort = htmlspecialchars($_GET["sort"]);
+    }
+  }
+  ?>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>
     <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,22 +58,6 @@
     </div>
   </nav>
   <!-- Delete Data -->
-  <?php
-  include "connect.php";
-  if (isset($_GET['table'])) {
-    $table = htmlspecialchars($_GET["table"]);
-    if (isset($_GET['id'])) {
-      $id = htmlspecialchars($_GET['id']);
-      $sql = "delete from $table where id='$id' ";
-      $hasil = mysqli_query($conn, $sql);
-      if ($hasil) {
-        header("Location:./show.php?table=$table&sort=no_aset");
-      } else {
-        echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
-      }
-    }
-  }
-  ?>
   <!-- Delete Data -->
 
   <div class="container">
@@ -76,7 +75,6 @@
     <div class="d-flex justify-content-between">
       <div class="buttons">
         <a href="#" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Data</a>
-        <a href="#" class="btn btn-danger in-table" role="button" data-bs-toggle="modal" data-bs-target="#deleteCatModal">Delete Category</a>
       </div>
       <form action="./search.php?table=<?php echo $table ?>" method="post">
         <div class="input-group">
@@ -102,7 +100,7 @@
       </thead>
 
       <?php
-      include "connect.php";
+      include "../connect.php";
 
       function input($data)
       {
@@ -136,7 +134,6 @@
             <td><?php echo $data["tgl_keluar"]; ?></td>
             <td>
               <a href="#" class="btn btn-warning m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $data['id']; ?>">Update</a>
-              <a href="#" class="btn btn-danger m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $data['id']; ?>">Delete</a>
             </td>
           </tr>
 
@@ -213,23 +210,6 @@
           <!-- Update Form Modal -->
 
           <!-- Delete Modal -->
-          <div class="modal fade" id="deleteModal<?php echo $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Item</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>Delete item <?php echo $data['no_aset']; ?>?</p>
-                </div>
-                <div class="modal-footer">
-                  <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?table=<?php echo htmlspecialchars($table) ?>&id=<?php echo $data['id']; ?>" class="btn btn-danger in-table" role="button">Delete</a>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- Delete Modal -->
 
 
@@ -334,23 +314,6 @@
       </form>
       <!-- Add Modal -->
       <!-- Delete Modal -->
-      <div class="modal fade" id="deleteCatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Delete category <?php echo $table; ?>?</p>
-            </div>
-            <div class="modal-footer">
-              <a href="./dashboard.php?table=<?php echo $table; ?>" class="btn btn-danger" role="button">Delete</a>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Delete Modal -->
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
