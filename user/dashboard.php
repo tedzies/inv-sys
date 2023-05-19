@@ -14,7 +14,7 @@
     <?php
     session_start();
 
-    if ($_SESSION['level'] == "") {
+    if ($_SESSION['level'] != "user") {
         header("location:../index.php");
     }
 
@@ -22,9 +22,9 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>
-        <div class="d-flex justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="d-flex justify-content-between collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav align-items-center" id="navbarSupportedContent">
-                <a class="nav-link active" aria-current="page" href="./das.php">DASHBOARD</a>
+                <a class="nav-link active" aria-current="page" href="./dashboard.php">DASHBOARD</a>
                 <!-- Dropdown -->
                 <div class="dropdown">
                     <a class="dropdown-toggle fw-normal nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu p-1">
                         <?php
                         include "../connect.php";
-                        $sql = "show tables";
+                        $sql = "show tables where tables_in_tj_test <> 'user_info';";
                         $hasil = mysqli_query($conn, $sql);
                         $no = 0;
                         while ($data = mysqli_fetch_array($hasil)) {
@@ -48,6 +48,16 @@
                     </ul>
                 </div>
                 <!-- Dropdown -->
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="btn-group-sm dropstart me-2">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Settings
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../logout.php">Log Out</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
