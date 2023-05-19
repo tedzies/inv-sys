@@ -18,7 +18,6 @@
     if ($_SESSION['level'] != "admin") {
         header("location:../index.php");
     }
-
     ?>
     <!-- Delete Table -->
     <?php
@@ -165,7 +164,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Old Password:</label>
-                                    <input type="text" name="oldpassword" class="form-control" placeholder="Masukan password" required />
+                                    <input type="password" name="oldpassword" class="form-control" placeholder="Masukan password" required />
                                 </div>
                                 <div class="form-group">
                                     <label>Username:</label>

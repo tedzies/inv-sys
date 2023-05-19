@@ -22,6 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $hasil = mysqli_query($conn, $sql);
 
   if ($hasil) {
-    header("Location:./dashboard.php");
+    header("Location:../logout.php");
   }
 }
