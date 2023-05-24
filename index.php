@@ -16,19 +16,18 @@
     </nav>
     <div class="row h-100 w-100 align-items-center justify-content-center">
         <div class="card" style="width: 24rem;">
-            <img src="https://plus.unsplash.com/premium_photo-1675979621109-7ad71d35b9e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1016&q=80" class="card-img-top rounded h-25 img-fluid my-3" alt="...">
             <form action="ceklogin.php" method="post">
                 <div class="card-body d-flex flex-column align-items-center p-0">
-                    <h5 class="card-title fw-bold">HARDWARE INVENTORY</h5>
+                    <h5 class="card-title fw-bold mt-3">HARDWARE INVENTORY</h5>
                     <p class="card-text fw-medium">LOGIN</p>
                     <div class="input-group flex-nowrap mb-1">
                         <input type="text" class="form-control" placeholder="Username" name="username" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                     <div class="input-group flex-nowrap my-1">
-                        <input type="password" class="form-control" placeholder="Password" name="password" aria-label="Password" aria-describedby="addon-wrapping">
+                        <input type="password" class="form-control" placeholder="Kata Sandi" name="password" aria-label="Password" aria-describedby="addon-wrapping">
                     </div>
                     <div class="d-flex flex-column w-100 my-3">
-                        <button class="btn btn-primary m-1" type="submit" id="log-in-button">Login</button>
+                        <button class="btn btn-primary m-1" type="submit" id="log-in-button">Masuk</button>
                     </div>
                 </div>
             </form>

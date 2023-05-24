@@ -24,17 +24,17 @@
     <span class="navbar-brand mb-0 h1"><a class="home" href="./dashboard.php">HARDWARE INVENTORY</a></span>
     <div class="d-flex justify-content-between collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav align-items-center" id="navbarSupportedContent">
-        <a class="nav-link active" aria-current="page" href="./dashboard.php">DASHBOARD</a>
+        <a class="nav-link active" aria-current="page" href="./dashboard.php">BERANDA</a>
         <!-- Dropdown -->
         <div class="dropdown">
           <a class="dropdown-toggle fw-normal nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            CATEGORY
+            KATEGORI
           </a>
 
           <ul class="dropdown-menu p-1">
             <?php
             include "../connect.php";
-            $sql = "show tables where tables_in_tj_test <> 'user_info';";
+            $sql = "show tables where tables_in_$db <> 'user_info';";
             $hasil = mysqli_query($conn, $sql);
             $no = 0;
             while ($data = mysqli_fetch_array($hasil)) {
@@ -44,20 +44,20 @@
             <?php
             }
             ?>
-            <a href="#" class="btn btn-primary text-nowrap" role="button" data-bs-toggle="modal" data-bs-target="#addCatModal">Tambah Category</a>
+            <a href="#" class="btn btn-primary text-nowrap" role="button" data-bs-toggle="modal" data-bs-target="#addCatModal">Tambah Kategori</a>
           </ul>
         </div>
         <!-- Dropdown -->
       </div>
       <div class="d-flex align-items-center">
         <div class="btn-group-sm dropstart me-2">
-          <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Settings
+          <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Pengaturan
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item my-1" href="#" role="button" data-bs-toggle="modal" data-bs-target="#editLoginModal">Edit Login</a></li>
-            <li><a class="dropdown-item my-1" href="manageusers.php">Manage Users</a></li>
-            <li><a class="dropdown-item mt-3" href="../logout.php">Log Out</a></li>
+            <li><a class="dropdown-item my-1" href="#" role="button" data-bs-toggle="modal" data-bs-target="#editLoginModal">Atur Login</a></li>
+            <li><a class="dropdown-item my-1" href="manageusers.php">Atur Pengguna</a></li>
+            <li><a class="dropdown-item mt-3" href="../logout.php">Keluar</a></li>
           </ul>
         </div>
       </div>
@@ -89,7 +89,7 @@
     </h4>
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="./dashboard.php">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="./dashboard.php">Beranda</a></li>
         <li class="breadcrumb-item active" aria-current="page"><a href="./show.php?table=<?php echo $table ?>&sort=no_aset"> <?php echo $table; ?></a></li>
       </ol>
     </nav>
@@ -156,8 +156,8 @@
             <td><?php echo $data["tgl_masuk"]; ?></td>
             <td><?php echo $data["tgl_keluar"]; ?></td>
             <td>
-              <a href="#" class="btn btn-warning m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $data['id']; ?>">Update</a>
-              <a href="#" class="btn btn-danger m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $data['id']; ?>">Delete</a>
+              <a href="#" class="btn btn-warning m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $data['id']; ?>">Ubah</a>
+              <a href="#" class="btn btn-danger m-1 in-table" role="button" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $data['id']; ?>">Hapus</a>
             </td>
           </tr>
 
@@ -167,7 +167,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Data</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Data</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -224,8 +224,8 @@
                     <input type="hidden" name="table" value="<?php echo $table; ?>" />
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="submit" class="btn btn-primary submit">Simpan</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
                   </div>
                 </div>
               </div>
@@ -238,15 +238,15 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Item</h1>
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <p>Delete item <?php echo $data['no_aset']; ?>?</p>
+                  <p>Hapus <?php echo $data['no_aset']; ?>?</p>
                 </div>
                 <div class="modal-footer">
-                  <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?table=<?php echo htmlspecialchars($table) ?>&id=<?php echo $data['id']; ?>" class="btn btn-danger in-table" role="button">Delete</a>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                  <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?table=<?php echo htmlspecialchars($table) ?>&id=<?php echo $data['id']; ?>" class="btn btn-danger in-table" role="button">Hapus</a>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Data</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -322,8 +322,8 @@
                 <input type="hidden" name="table" value="<?php echo $table; ?>" />
               </div>
               <div class="modal-footer">
-                <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="submit" class="btn btn-primary submit">Tambah</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
               </div>
             </div>
           </div>
@@ -336,18 +336,18 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                  <label>Nama Category:</label>
-                  <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Category" required />
+                  <label>Nama Kategori:</label>
+                  <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Kategori" required />
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="submit" class="btn btn-primary submit">Tambah</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
               </div>
             </div>
           </div>
@@ -359,15 +359,15 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Kategori</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <p>Delete category <?php echo $table; ?>?</p>
+              <p>Hapus Kategori <?php echo $table; ?>?</p>
             </div>
             <div class="modal-footer">
-              <a href="./dashboard.php?table=<?php echo $table; ?>" class="btn btn-danger" role="button">Delete</a>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+              <a href="./dashboard.php?table=<?php echo $table; ?>" class="btn btn-danger" role="button">Hapus</a>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
             </div>
           </div>
         </div>
@@ -379,30 +379,30 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Login Info</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Atur Info Login</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                  <label>Old Username:</label>
+                  <label>Username Lama:</label>
                   <input type="text" name="oldusername" class="form-control" placeholder="Masukan username" required />
                 </div>
                 <div class="form-group">
-                  <label>Old Password:</label>
+                  <label>Password Lana:</label>
                   <input type="password" name="oldpassword" class="form-control" placeholder="Masukan password" required />
                 </div>
                 <div class="form-group">
-                  <label>Username:</label>
+                  <label>Username Baru:</label>
                   <input type="text" name="username" class="form-control" placeholder="Masukan username baru" required />
                 </div>
                 <div class="form-group">
-                  <label>Password:</label>
+                  <label>Password Baru:</label>
                   <input type="password" name="password" class="form-control" placeholder="Masukan password baru" required />
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" name="submit" class="btn btn-primary submit">Simpan</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
               </div>
             </div>
           </div>
